@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sports.life.mapper.ApplyMapper">
+  <resultMap id="BaseResultMap" type="com.sports.life.entity.Apply">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="app_end_time" jdbcType="TIMESTAMP" property="appEndTime" />
+    <result column="scope" jdbcType="BIT" property="scope" />
+    <result column="app_time" jdbcType="TIMESTAMP" property="appTime" />
+    <result column="standby" jdbcType="BIT" property="standby" />
+    <result column="purchase_limitation" jdbcType="BIT" property="purchaseLimitation" />
+    <result column="ac_id" jdbcType="VARCHAR" property="acId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="VARCHAR" property="updateId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `number`, price, app_end_time, `scope`, app_time, standby, purchase_limitation, 
+    ac_id, create_time, create_id, update_time, update_id, code, `name`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from apply
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from apply
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sports.life.entity.Apply">
+    insert into apply (id, `number`, price, 
+      app_end_time, `scope`, app_time, 
+      standby, purchase_limitation, ac_id, 
+      create_time, create_id, update_time, 
+      update_id, code, `name`
+      )
+    values (#{id,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, 
+      #{appEndTime,jdbcType=TIMESTAMP}, #{scope,jdbcType=BIT}, #{appTime,jdbcType=TIMESTAMP}, 
+      #{standby,jdbcType=BIT}, #{purchaseLimitation,jdbcType=BIT}, #{acId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sports.life.entity.Apply">
+    insert into apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="appEndTime != null">
+        app_end_time,
+      </if>
+      <if test="scope != null">
+        `scope`,
+      </if>
+      <if test="appTime != null">
+        app_time,
+      </if>
+      <if test="standby != null">
+        standby,
+      </if>
+      <if test="purchaseLimitation != null">
+        purchase_limitation,
+      </if>
+      <if test="acId != null">
+        ac_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="appEndTime != null">
+        #{appEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scope != null">
+        #{scope,jdbcType=BIT},
+      </if>
+      <if test="appTime != null">
+        #{appTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="standby != null">
+        #{standby,jdbcType=BIT},
+      </if>
+      <if test="purchaseLimitation != null">
+        #{purchaseLimitation,jdbcType=BIT},
+      </if>
+      <if test="acId != null">
+        #{acId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sports.life.entity.Apply">
+    update apply
+    <set>
+      <if test="number != null">
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="appEndTime != null">
+        app_end_time = #{appEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scope != null">
+        `scope` = #{scope,jdbcType=BIT},
+      </if>
+      <if test="appTime != null">
+        app_time = #{appTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="standby != null">
+        standby = #{standby,jdbcType=BIT},
+      </if>
+      <if test="purchaseLimitation != null">
+        purchase_limitation = #{purchaseLimitation,jdbcType=BIT},
+      </if>
+      <if test="acId != null">
+        ac_id = #{acId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sports.life.entity.Apply">
+    update apply
+    set `number` = #{number,jdbcType=INTEGER},
+      price = #{price,jdbcType=INTEGER},
+      app_end_time = #{appEndTime,jdbcType=TIMESTAMP},
+      `scope` = #{scope,jdbcType=BIT},
+      app_time = #{appTime,jdbcType=TIMESTAMP},
+      standby = #{standby,jdbcType=BIT},
+      purchase_limitation = #{purchaseLimitation,jdbcType=BIT},
+      ac_id = #{acId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

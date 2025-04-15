@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sports.life.mapper.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.sports.life.entity.Activity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ac_url" jdbcType="VARCHAR" property="acUrl" />
+    <result column="ac_title" jdbcType="VARCHAR" property="acTitle" />
+    <result column="ac_content" jdbcType="VARCHAR" property="acContent" />
+    <result column="ac_status" jdbcType="TINYINT" property="acStatus" />
+    <result column="ac_address" jdbcType="VARCHAR" property="acAddress" />
+    <result column="ac_start_time" jdbcType="TIMESTAMP" property="acStartTime" />
+    <result column="ac_end_time" jdbcType="TIMESTAMP" property="acEndTime" />
+    <result column="ac_type" jdbcType="BIGINT" property="acType" />
+    <result column="ac_safe" jdbcType="VARCHAR" property="acSafe" />
+    <result column="ac_scope" jdbcType="TINYINT" property="acScope" />
+    <result column="ac_questionnaire" jdbcType="VARCHAR" property="acQuestionnaire" />
+    <result column="ac_refund" jdbcType="INTEGER" property="acRefund" />
+    <result column="ac_category" jdbcType="VARCHAR" property="acCategory" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_id" jdbcType="VARCHAR" property="createId" />
+    <result column="update_id" jdbcType="VARCHAR" property="updateId" />
+    <result column="ac_code" jdbcType="VARCHAR" property="acCode" />
+  </resultMap>
+  <resultMap id="CheckALLMap" type="com.sports.life.vo.respVO.ActivityPageRespVO">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ac_code" jdbcType="VARCHAR" property="acCode" />
+    <result column="ac_title" jdbcType="VARCHAR" property="acTitle" />
+    <result column="ac_type" jdbcType="BIGINT" property="acType" />
+    <result column="ac_url" jdbcType="VARCHAR" property="acUrl" />
+    <result column="ac_start_time" jdbcType="TIMESTAMP" property="acStartTime" />
+    <result column="ac_end_time" jdbcType="TIMESTAMP" property="acEndTime" />
+    <result column="ac_status" jdbcType="TINYINT" property="acStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ac_url, ac_title, ac_content, ac_status, ac_address, ac_start_time, ac_end_time, 
+    ac_type, ac_safe, ac_scope, ac_questionnaire, ac_refund, ac_category, create_time, 
+    update_time, create_id, update_id, ac_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from activity
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sports.life.entity.Activity">
+    insert into activity (id, ac_url, ac_title, 
+      ac_content, ac_status, ac_address, 
+      ac_start_time, ac_end_time, ac_type, 
+      ac_safe, ac_scope, ac_questionnaire, 
+      ac_refund, ac_category, create_time, 
+      update_time, create_id, update_id, 
+      ac_code)
+    values (#{id,jdbcType=VARCHAR}, #{acUrl,jdbcType=VARCHAR}, #{acTitle,jdbcType=VARCHAR}, 
+      #{acContent,jdbcType=VARCHAR}, #{acStatus,jdbcType=TINYINT}, #{acAddress,jdbcType=VARCHAR}, 
+      #{acStartTime,jdbcType=TIMESTAMP}, #{acEndTime,jdbcType=TIMESTAMP}, #{acType,jdbcType=BIGINT},
+      #{acSafe,jdbcType=VARCHAR}, #{acScope,jdbcType=TINYINT}, #{acQuestionnaire,jdbcType=VARCHAR}, 
+      #{acRefund,jdbcType=INTEGER}, #{acCategory,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}, 
+      #{acCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sports.life.entity.Activity">
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="acUrl != null">
+        ac_url,
+      </if>
+      <if test="acTitle != null">
+        ac_title,
+      </if>
+      <if test="acContent != null">
+        ac_content,
+      </if>
+      <if test="acStatus != null">
+        ac_status,
+      </if>
+      <if test="acAddress != null">
+        ac_address,
+      </if>
+      <if test="acStartTime != null">
+        ac_start_time,
+      </if>
+      <if test="acEndTime != null">
+        ac_end_time,
+      </if>
+      <if test="acType != null">
+        ac_type,
+      </if>
+      <if test="acSafe != null">
+        ac_safe,
+      </if>
+      <if test="acScope != null">
+        ac_scope,
+      </if>
+      <if test="acQuestionnaire != null">
+        ac_questionnaire,
+      </if>
+      <if test="acRefund != null">
+        ac_refund,
+      </if>
+      <if test="acCategory != null">
+        ac_category,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="acCode != null">
+        ac_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="acUrl != null">
+        #{acUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="acTitle != null">
+        #{acTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="acContent != null">
+        #{acContent,jdbcType=VARCHAR},
+      </if>
+      <if test="acStatus != null">
+        #{acStatus,jdbcType=TINYINT},
+      </if>
+      <if test="acAddress != null">
+        #{acAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="acStartTime != null">
+        #{acStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acEndTime != null">
+        #{acEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acType != null">
+        #{acType,jdbcType=BIGINT},
+      </if>
+      <if test="acSafe != null">
+        #{acSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="acScope != null">
+        #{acScope,jdbcType=TINYINT},
+      </if>
+      <if test="acQuestionnaire != null">
+        #{acQuestionnaire,jdbcType=VARCHAR},
+      </if>
+      <if test="acRefund != null">
+        #{acRefund,jdbcType=INTEGER},
+      </if>
+      <if test="acCategory != null">
+        #{acCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="acCode != null">
+        #{acCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sports.life.entity.Activity">
+    update activity
+    <set>
+      <if test="acUrl != null">
+        ac_url = #{acUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="acTitle != null">
+        ac_title = #{acTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="acContent != null">
+        ac_content = #{acContent,jdbcType=VARCHAR},
+      </if>
+      <if test="acStatus != null">
+        ac_status = #{acStatus,jdbcType=TINYINT},
+      </if>
+      <if test="acAddress != null">
+        ac_address = #{acAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="acStartTime != null">
+        ac_start_time = #{acStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acEndTime != null">
+        ac_end_time = #{acEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acType != null">
+        ac_type = #{acType,jdbcType=BIGINT},
+      </if>
+      <if test="acSafe != null">
+        ac_safe = #{acSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="acScope != null">
+        ac_scope = #{acScope,jdbcType=TINYINT},
+      </if>
+      <if test="acQuestionnaire != null">
+        ac_questionnaire = #{acQuestionnaire,jdbcType=VARCHAR},
+      </if>
+      <if test="acRefund != null">
+        ac_refund = #{acRefund,jdbcType=INTEGER},
+      </if>
+      <if test="acCategory != null">
+        ac_category = #{acCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="acCode != null">
+        ac_code = #{acCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sports.life.entity.Activity">
+    update activity
+    set ac_url = #{acUrl,jdbcType=VARCHAR},
+      ac_title = #{acTitle,jdbcType=VARCHAR},
+      ac_content = #{acContent,jdbcType=VARCHAR},
+      ac_status = #{acStatus,jdbcType=TINYINT},
+      ac_address = #{acAddress,jdbcType=VARCHAR},
+      ac_start_time = #{acStartTime,jdbcType=TIMESTAMP},
+      ac_end_time = #{acEndTime,jdbcType=TIMESTAMP},
+      ac_type = #{acType,jdbcType=BIGINT},
+      ac_safe = #{acSafe,jdbcType=VARCHAR},
+      ac_scope = #{acScope,jdbcType=TINYINT},
+      ac_questionnaire = #{acQuestionnaire,jdbcType=VARCHAR},
+      ac_refund = #{acRefund,jdbcType=INTEGER},
+      ac_category = #{acCategory,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=VARCHAR},
+      update_id = #{updateId,jdbcType=VARCHAR},
+      ac_code = #{acCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="checkActivity" resultMap="CheckALLMap" parameterType="com.sports.life.vo.reqVO.ActivityPageVO">
+    select
+    id,ac_code,ac_title,ac_start_time,ac_end_time,ac_type,ac_url,ac_status
+    from
+    activity
+    where ac_status=0
+  </select>
+
+  <select id="selectBySportType" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select <include refid="Base_Column_List" />
+    from activity
+    <where>
+      <if test="acType != null">
+        ac_type = #{acType,jdbcType=BIGINT}
+      </if>
+    </where>
+  </select>
+  <select id="selectAllActivity" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from activity
+  </select>
+</mapper>

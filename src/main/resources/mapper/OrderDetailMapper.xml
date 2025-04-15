@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sports.life.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.sports.life.entity.OrderDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="order_source" jdbcType="VARCHAR" property="orderSource" />
+    <result column="activity_code" jdbcType="VARCHAR" property="activityCode" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="number_people" jdbcType="INTEGER" property="numberPeople" />
+    <result column="pay_source" jdbcType="VARCHAR" property="paySource" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_code, order_type, order_status, order_source, activity_code, order_time, 
+    user_id, price, number_people, pay_source, pay_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sports.life.entity.OrderDetail">
+    insert into order_detail (id, order_code, order_type, 
+      order_status, order_source, activity_code, 
+      order_time, user_id, price, 
+      number_people, pay_source, pay_time, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=INTEGER}, #{orderSource,jdbcType=VARCHAR}, #{activityCode,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{numberPeople,jdbcType=INTEGER}, #{paySource,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sports.life.entity.OrderDetail">
+    insert into order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderCode != null">
+        order_code,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="orderSource != null">
+        order_source,
+      </if>
+      <if test="activityCode != null">
+        activity_code,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="numberPeople != null">
+        number_people,
+      </if>
+      <if test="paySource != null">
+        pay_source,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null">
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderSource != null">
+        #{orderSource,jdbcType=VARCHAR},
+      </if>
+      <if test="activityCode != null">
+        #{activityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="numberPeople != null">
+        #{numberPeople,jdbcType=INTEGER},
+      </if>
+      <if test="paySource != null">
+        #{paySource,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sports.life.entity.OrderDetail">
+    update order_detail
+    <set>
+      <if test="orderCode != null">
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderSource != null">
+        order_source = #{orderSource,jdbcType=VARCHAR},
+      </if>
+      <if test="activityCode != null">
+        activity_code = #{activityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="numberPeople != null">
+        number_people = #{numberPeople,jdbcType=INTEGER},
+      </if>
+      <if test="paySource != null">
+        pay_source = #{paySource,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sports.life.entity.OrderDetail">
+    update order_detail
+    set order_code = #{orderCode,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_source = #{orderSource,jdbcType=VARCHAR},
+      activity_code = #{activityCode,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      number_people = #{numberPeople,jdbcType=INTEGER},
+      pay_source = #{paySource,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
